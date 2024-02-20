@@ -15,16 +15,17 @@ function Card() {
       })
     })
   }
-  const handleDecrease = (id,quantity) => {
-    setData(preData=>{
-      return preData.map((item)=>{
-        if(item.id===id && (item.quantity || quantity)>0){
-          return{...item,quantity:(item.quantity-1 || quantity-1)}
+  const handleDecrease = (id) => {
+    setData((preData) => {
+      return preData.map((item) => {
+        if (item.id === id) {
+          const newQuantity = (item.quantity || 1) > 1 ? item.quantity - 1 : 1;
+          return { ...item, quantity: newQuantity };
         }
-        return item
-      })
-    }) 
-  }
+        return item;
+      });
+    });
+  };
   const handleRemove=(id)=>{
     setData((prevData) => prevData.filter((item) => item.id !== id));
   }
